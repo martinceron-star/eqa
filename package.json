@@ -1,0 +1,11 @@
+{
+  "name": "eqa-dashboard",
+  "version": "1.0.0",
+  "description": "Dashboard full-stack inspirado en la UI proporcionada",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "check": "node --check server.js"
+  }
+}
