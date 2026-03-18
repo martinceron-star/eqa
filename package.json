@@ -1,0 +1,13 @@
+{
+  "name": "eqa-iso-solutions",
+  "version": "1.0.0",
+  "description": "Full-stack registration form inspired by the provided ISO Solutions UI",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "node --test"
+  },
+  "keywords": ["iso", "frontend", "backend"],
+  "license": "MIT"
+}
