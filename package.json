@@ -1,0 +1,10 @@
+{
+  "name": "eqa",
+  "version": "1.0.0",
+  "description": "ISO Solutions login demo",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test"
+  }
+}
