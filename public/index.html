@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ISO Solutions | Iniciar sesión</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="login-card">
+        <header class="hero-banner">
+          <div class="brand-wrap">
+            <div class="brand-icon" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div>
+              <p class="brand-name">ISO SOLUTIONS</p>
+              <p class="brand-subtitle">Implementación ISO 9001:2015</p>
+            </div>
+          </div>
+        </header>
+
+        <div class="card-content">
+          <div class="heading-copy">
+            <h1>Inicia sesión <span>en tu cuenta</span></h1>
+            <p>
+              Completa la información para crear el perfil de tu empresa
+              en ISO Solutions
+            </p>
+          </div>
+
+          <form id="loginForm" class="form-panel">
+            <label class="field-group">
+              <span>Correo electrónico</span>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="usuario@empresa.com"
+                autocomplete="username"
+                required
+              />
+            </label>
+
+            <label class="field-group">
+              <span>Contraseña</span>
+              <div class="password-input">
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  placeholder="••••••••"
+                  autocomplete="current-password"
+                  required
+                />
+                <button type="button" id="togglePassword" class="toggle-visibility" aria-label="Mostrar contraseña">
+                  👁
+                </button>
+              </div>
+            </label>
+
+            <button type="submit" class="submit-button">Iniciar sesión</button>
+            <button type="button" class="link-button">¿Olvidaste tu contraseña?</button>
+          </form>
+
+          <div id="feedback" class="feedback" aria-live="polite"></div>
+
+          <section class="demo-access">
+            <p><strong>Cuenta demo:</strong> usuario@empresa.com</p>
+            <p><strong>Contraseña demo:</strong> ISO9001!</p>
+          </section>
+        </div>
+
+        <footer class="card-footer">
+          <p>Versión 1.0</p>
+          <p>© 2024 ISO Solutions — Todos los derechos reservados</p>
+          <a href="https://www.isosolutions.com" target="_blank" rel="noreferrer">www.isosolutions.com</a>
+        </footer>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
