@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ISO Solutions | Contexto de la organización</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand-card">
+          <div class="brand-icon">⬢</div>
+          <div>
+            <strong>ISO SOLUTIONS</strong>
+            <p>Implementación ISO 9001:2015</p>
+          </div>
+        </div>
+        <nav id="sidebar-nav"></nav>
+        <div class="sidebar-footer">
+          <div class="avatar">A</div>
+          <div>
+            <strong id="user-name"></strong>
+            <p id="user-role"></p>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-layout">
+        <header class="topbar">
+          <div class="chapter-switcher">
+            <span class="chapter-index">4.1</span>
+            <button class="ghost-button">◀</button>
+            <button class="ghost-button primary">Antaller Heg</button>
+          </div>
+          <label class="search-box">
+            <span>🔍</span>
+            <input type="search" placeholder="Buscar..." />
+          </label>
+          <div class="company-chip">Empresa: <strong id="company-name"></strong></div>
+          <div class="topbar-user">
+            <div class="notification-dot"></div>
+            <div class="avatar small">A</div>
+            <div>
+              <strong id="topbar-user-name"></strong>
+              <p id="topbar-user-role"></p>
+            </div>
+          </div>
+        </header>
+
+        <section class="content-grid">
+          <div class="content-card">
+            <div class="page-heading">
+              <h1 id="chapter-title"></h1>
+            </div>
+
+            <div class="tab-row" id="tabs"></div>
+            <div id="analysis-sections"></div>
+
+            <div class="footer-actions">
+              <div>
+                <button class="action-button secondary" id="analyze-btn">Analizar con IA</button>
+                <button class="action-button secondary" id="save-btn">Guardar</button>
+              </div>
+              <button class="action-button primary" id="continue-btn">Continuar</button>
+            </div>
+          </div>
+
+          <aside class="audit-panel">
+            <div class="panel-card">
+              <div class="panel-title-row">
+                <h2>CUMPLIMIENTO DEL CAPÍTULO 4</h2>
+                <span id="chapter-progress-label"></span>
+              </div>
+              <div id="chapter-progress-list"></div>
+            </div>
+
+            <div class="panel-card">
+              <div class="panel-title-row">
+                <h2>Cumplimiento total</h2>
+                <span id="overall-compliance"></span>
+              </div>
+              <div class="progress large"><span id="overall-progress-bar"></span></div>
+              <button class="audit-button">Ver modo auditor</button>
+            </div>
+
+            <div class="panel-card">
+              <div class="panel-title-row">
+                <h2>Evidencias requeridas</h2>
+              </div>
+              <ul class="evidence-list" id="evidence-list"></ul>
+              <button class="audit-button">Ver modo auditor</button>
+            </div>
+          </aside>
+        </section>
+      </main>
+    </div>
+
+    <div class="toast" id="toast"></div>
+    <script src="/app.js" defer></script>
+  </body>
+</html>

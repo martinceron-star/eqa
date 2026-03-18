@@ -1,0 +1,11 @@
+{
+  "name": "eqa-iso-solutions",
+  "version": "1.0.0",
+  "description": "ISO Solutions organization context dashboard demo",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "node --test test/api.test.js"
+  }
+}
