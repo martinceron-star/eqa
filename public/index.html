@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ISO Solutions | Registro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="card">
+        <header class="hero">
+          <div class="hero__logo-wrap">
+            <div class="hero__logo-mark">⬡</div>
+            <div>
+              <p class="hero__brand">ISO SOLUTIONS</p>
+              <p class="hero__subtitle">Implementación ISO 9001:2015</p>
+            </div>
+          </div>
+        </header>
+
+        <section class="form-section">
+          <h1>Bienvenido/a, registra tu organización</h1>
+          <p class="intro">Completa la información para crear el perfil de tu empresa en ISO Solutions</p>
+
+          <form id="organization-form" class="form-grid">
+            <label class="field">
+              <span>Nombre de la empresa</span>
+              <input id="companyName" name="companyName" type="text" placeholder="Nombre de la empresa" required />
+            </label>
+
+            <label class="field">
+              <span>Pais <strong id="selected-flag">🇲🇽</strong> <span id="selected-country-label">México</span></span>
+              <select id="country" name="country" required></select>
+            </label>
+
+            <label class="field">
+              <span>Industria</span>
+              <select id="industry" name="industry" required></select>
+            </label>
+
+            <label class="field">
+              <span>Número de empleados</span>
+              <select id="employees" name="employees" required></select>
+            </label>
+
+            <section class="process-card">
+              <div class="process-card__heading">
+                <h2>El Sistema de Gestión de la Calidad y sus procesos</h2>
+                <small>Selecciona los procesos prioritarios.</small>
+              </div>
+              <div class="chip-input">
+                <span class="chip-input__icon">▣</span>
+                <input id="process-search" type="text" placeholder="Buscar proceso" />
+              </div>
+              <div id="process-list" class="process-list"></div>
+            </section>
+
+            <div class="actions">
+              <button type="button" id="analyze-btn" class="btn btn--primary">✦ Analizar requisitos en IA</button>
+              <button type="reset" class="btn btn--ghost">🗑 Guardar</button>
+              <button type="submit" class="btn btn--secondary">Guardar</button>
+            </div>
+          </form>
+
+          <div id="message" class="message" role="status" aria-live="polite"></div>
+
+          <section class="saved-data">
+            <div class="saved-data__header">
+              <h2>Organizaciones registradas</h2>
+              <button type="button" id="refresh-btn" class="btn btn--tiny">Actualizar</button>
+            </div>
+            <div id="organizations-list" class="saved-data__list"></div>
+          </section>
+        </section>
+      </section>
+    </main>
+    <script src="app.js" defer></script>
+  </body>
+</html>
