@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EQA Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand__logo">⬡</div>
+          <div>
+            <strong>ISO SOLUTIONS</strong>
+          </div>
+        </div>
+        <nav id="sidebar-nav" class="nav"></nav>
+        <div class="sidebar__footer">
+          <div class="avatar avatar--small">A</div>
+          <div>
+            <strong>Admin</strong>
+            <p>Control de cuenta</p>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div class="searchbar">
+            <span>🔍</span>
+            <input type="text" placeholder="Buscar..." />
+          </div>
+          <div class="topbar__actions">
+            <button class="icon-btn">🔔</button>
+            <div class="user-card">
+              <div class="avatar">A</div>
+              <div>
+                <strong id="user-name">Admin</strong>
+                <p id="user-role">Power Admin</p>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <section class="content">
+          <div class="content__header">
+            <div>
+              <h1 id="page-title">Dashboard</h1>
+            </div>
+            <div class="toolbar">
+              <button class="tag">👥 <span id="page-subtitle">Resumen del frontero</span></button>
+              <button class="icon-btn">⤢</button>
+              <button class="icon-btn">↻</button>
+            </div>
+          </div>
+
+          <div class="grid">
+            <section class="panel panel--large">
+              <div class="panel__heading">
+                <h2 id="context-title">CONTEXTO DE LA ORGANIZACIÓN</h2>
+              </div>
+              <div id="chapters" class="chapters"></div>
+            </section>
+
+            <section class="panel panel--accent">
+              <h2>Cumplimiento total del <span id="compliance">55%</span></h2>
+              <button class="primary-btn">☰ Ver modo auditor</button>
+            </section>
+
+            <section class="panel panel--compact">
+              <h3>Evidencias requeridas</h3>
+              <ul id="evidence-list" class="evidence-list"></ul>
+            </section>
+
+            <section class="panel panel--cta">
+              <button class="primary-btn primary-btn--full">🗂 Ver modo auditor</button>
+            </section>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script src="/app.js"></script>
+  </body>
+</html>
