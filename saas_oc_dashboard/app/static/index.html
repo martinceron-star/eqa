@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OC Dashboard SaaS</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #f4f7fb; }
+    .header { background: #13294b; color: white; padding: 16px 24px; }
+    .container { padding: 20px; }
+    .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .card { background: white; border-radius: 10px; padding: 12px; box-shadow: 0 1px 6px rgba(0,0,0,.08); }
+    .sev-green { color: #0a8f3c; font-weight: bold; }
+    .sev-yellow { color: #d69a00; font-weight: bold; }
+    .sev-red { color: #c31e1e; font-weight: bold; }
+    table { width: 100%; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden; }
+    th, td { padding: 10px; border-bottom: 1px solid #eee; text-align: left; }
+    .row { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; margin-top: 16px; }
+    button { background: #1b5cff; color: white; border: none; padding: 10px 14px; border-radius: 8px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h2>Dashboard Ejecutivo OC (SaaS MVP)</h2>
+    <small>Token demo: admin-token | Header X-Tenant-ID: demo</small>
+  </div>
+  <div class="container">
+    <div style="display:flex; gap:10px; margin-bottom:12px;">
+      <button onclick="seedKpis()">Cargar KPIs demo</button>
+      <button onclick="evaluateAlerts()">Evaluar alertas</button>
+      <button onclick="loadAll()">Refrescar</button>
+    </div>
+
+    <div id="kpiCards" class="grid"></div>
+
+    <div class="row">
+      <div class="card">
+        <h3>Alertas abiertas</h3>
+        <table>
+          <thead><tr><th>ID</th><th>Severidad</th><th>Mensaje</th></tr></thead>
+          <tbody id="alertBody"></tbody>
+        </table>
+      </div>
+      <div class="card">
+        <h3>Forecast (30 días)</h3>
+        <p id="forecast"></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const headers = {
+      "Authorization": "Bearer admin-token",
+      "X-Tenant-ID": "demo",
+      "Content-Type": "application/json"
+    };
+
+    function severity(v, g, y) {
+      if (v >= g) return "green";
+      if (v >= y) return "yellow";
+      return "red";
+    }
+
+    async function seedKpis() {
+      const sample = [
+        {area:"Comercial",name:"Tasa de Conversión",formula:"ganados/calificados*100",frequency:"semanal",target:35,threshold_green:35,threshold_yellow:25,current_value:28,owner:"Gerente Comercial",source:"CRM",recommended_action:"activar campaña de recuperación"},
+        {area:"Técnica",name:"Lead Time Emisión",formula:"promedio(fecha_emision-fecha_cierre)",frequency:"semanal",target:10,threshold_green:10,threshold_yellow:8,current_value:7,owner:"Gerente Técnica",source:"Sistema Certificación",recommended_action:"priorizar expedientes atrasados"},
+        {area:"TI",name:"Disponibilidad",formula:"tiempo_disponible/tiempo_total*100",frequency:"diario",target:99.9,threshold_green:99.9,threshold_yellow:99.5,current_value:99.4,owner:"Líder TI",source:"Monitoring",recommended_action:"activar protocolo incidente P1"}
+      ];
+
+      for (const kpi of sample) {
+        await fetch('/api/v1/kpis', { method:'POST', headers, body: JSON.stringify(kpi) });
+      }
+      await loadAll();
+    }
+
+    async function loadKpis() {
+      const res = await fetch('/api/v1/kpis', { headers });
+      const data = await res.json();
+      const wrap = document.getElementById('kpiCards');
+      wrap.innerHTML = "";
+      data.forEach(k => {
+        const s = severity(k.current_value, k.threshold_green, k.threshold_yellow);
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `<h4>${k.name}</h4><div class="sev-${s}">${k.current_value}</div><small>Meta: ${k.target} | Área: ${k.area}</small>`;
+        wrap.appendChild(card);
+      });
+    }
+
+    async function evaluateAlerts() {
+      await fetch('/api/v1/alerts/evaluate', { method:'POST', headers });
+      await loadAlerts();
+    }
+
+    async function loadAlerts() {
+      const res = await fetch('/api/v1/alerts', { headers });
+      const data = await res.json();
+      const body = document.getElementById('alertBody');
+      body.innerHTML = "";
+      data.forEach(a => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${a.id}</td><td class="sev-${a.severity}">${a.severity}</td><td>${a.message}</td>`;
+        body.appendChild(tr);
+      });
+    }
+
+    async function loadForecast() {
+      const res = await fetch('/api/v1/forecast/kpi_current_value_avg?horizon_days=30', { headers });
+      const data = await res.json();
+      document.getElementById('forecast').textContent =
+        `Predicción: ${data.predicted_value} (IC: ${data.confidence_low} - ${data.confidence_high})`;
+    }
+
+    async function loadAll() {
+      await Promise.all([loadKpis(), loadAlerts(), loadForecast().catch(()=>{})]);
+    }
+
+    loadAll();
+  </script>
+</body>
+</html>
